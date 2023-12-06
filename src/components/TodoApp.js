@@ -9,6 +9,7 @@ const TodoApp = (props) => {
         addTodo,
         removeTodo,
         removeAll,
+        triggerAsyncFunction
     } = props;
     const [newTodo,setNewTodo] = useState('');
     return (
@@ -28,6 +29,20 @@ const TodoApp = (props) => {
             <button onClick={()=>{addTodo(newTodo); setNewTodo('')}}>add</button>
             <button onClick={removeTodo}>remove</button>
             <button onClick={removeAll}>remove all</button>
+            <button onClick ={()=>{
+                triggerAsyncFunction((dispatch,getState)=>{
+                    console.log("Async test start", getState());
+
+                    new Promise((resolve,reject)=> {
+                        setTimeout(resolve, 3000);})
+                        .then(()=>{
+                            console.log("fulfilled", getState());})
+                        .finally (()=>{
+                            console.log("Async text ends", getState())
+                        });
+                        });
+                    }}
+                    >test async function middleware</button>
             </div>
         </div>
     );
