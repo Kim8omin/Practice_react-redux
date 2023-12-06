@@ -1,8 +1,9 @@
 //container component (connect redux with react)
 import { connect } from "react-redux";
-//import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../actions";
 import TodoApp from '../../components/TodoApp'; 
-import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../ducks/todoDucks";
+import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../actions";
+//import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../ducks/todoDucks";
+import ThunkActionCreator from '../thunks/addTodoThunk';
 
 function mapStateToProps(state,ownProps){
     return {todoItems:state.todo};
@@ -11,7 +12,8 @@ function mapStateToProps(state,ownProps){
 function mapDispatchToProps(dispatch,ownProps){
     return {
         addTodo: (text) =>{
-            dispatch(addTodoActionCreator(text))
+            //dispatch(addTodoActionCreator());
+            dispatch(ThunkActionCreator(text));
         },
         removeTodo: ()=>{
             dispatch(removeTodoActionCreator());
