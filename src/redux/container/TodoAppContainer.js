@@ -1,7 +1,8 @@
 //container component (connect redux with react)
 import { connect } from "react-redux";
-import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../actions";
+//import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../actions";
 import TodoApp from '../../components/TodoApp'; 
+import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../ducks/todoDucks";
 
 function mapStateToProps(state,ownProps){
     return {todoItems:state.todo};
