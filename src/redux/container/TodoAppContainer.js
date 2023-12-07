@@ -1,9 +1,22 @@
-//container component (connect redux with react)
+//container makes a connection redux with react.
+//container is a part for calling the action creator function.(in todoSlice this case)
+
+
 import { connect } from "react-redux";
 import TodoApp from '../../components/TodoApp'; 
-import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../actions";
-//import { addTodoActionCreator, removeTodoActionCreator,removeAllActionCreator } from "../ducks/todoDucks";
-import ThunkActionCreator from '../thunks/addTodoThunk';
+//import { addTodoActionCreator, 
+//    removeTodoActionCreator,
+//    removeAllActionCreator } from "../actions";
+//import { addTodoActionCreator, 
+//removeTodoActionCreator,
+//removeAllActionCreator } from "../ducks/todoDucks";
+import {
+    addTodo as addTodoActionCreator,
+    removeTodo as removeTodoActionCreator,
+    removeAll as removeAllActionCreator
+} from "../slice/todoSlice"
+
+//import ThunkActionCreator from '../thunks/addTodoThunk';
 
 function mapStateToProps(state,ownProps){
     return {todoItems:state.todo};
@@ -12,8 +25,8 @@ function mapStateToProps(state,ownProps){
 function mapDispatchToProps(dispatch,ownProps){
     return {
         addTodo: (text) =>{
-            //dispatch(addTodoActionCreator());
-            dispatch(ThunkActionCreator(text));
+            dispatch(addTodoActionCreator(text));
+            //dispatch(ThunkActionCreator(text));
         },
         removeTodo: ()=>{
             dispatch(removeTodoActionCreator());
